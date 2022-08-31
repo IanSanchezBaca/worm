@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdlib.h>
 using namespace std;
 
 // input 
@@ -6,13 +7,14 @@ using namespace std;
 // draw
 class Worm{
   private:
-  int size;
-  bool dead = false;
-  // position x,y
-  
+    int size;
+    bool dead = false;
+    // position x,y
+
   public:
-  bool is_dead();
-  
+    bool is_dead();
+    void print_field();
+    int testing = 10;
 
 }; // class worm
 
@@ -21,8 +23,18 @@ bool Worm::is_dead(){
 }
 
 
-void print_field(){
-
+void Worm::print_field(){
+  for(int y = 0; y < 24; y++){
+    for(int x=0; x < 64; x++){ 
+      if(y == 0 || y == 23 || x == 0 || x == 63){ 
+        cout << "*";
+      }
+      else{
+        cout << "X";
+      }
+    }
+    cout << endl;
+  }
 }
 
 
@@ -30,7 +42,13 @@ void print_field(){
 int main(){
   Worm wiggler; 
   while(!wiggler.is_dead()){
-    cout << "owo" << endl;
+    system("clear");
+    //take the input first
+
+    //logic
+
+    //draw field
+    wiggler.print_field();
   }
 }
 
