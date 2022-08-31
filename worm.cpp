@@ -1,27 +1,36 @@
 #include<iostream>
 using namespace std;
 
+// input 
+// logic 
+// draw
 class Worm{
-  private;
+  private:
   int size;
+  bool dead = false;
   // position x,y
   
-  public;
+  public:
+  bool is_dead();
+  
 
 }; // class worm
 
+bool Worm::is_dead(){
+  return dead;
+}
 
 
+void print_field(){
 
-void printField();
+}
 
 
 
 int main(){
-  cout << "hello world" << endl;
-  printField();
+  Worm wiggler; 
+  while(!wiggler.is_dead()){
+    cout << "owo" << endl;
+  }
 }
 
-void printField(){
-  cout << "owo" << endl;
-}
