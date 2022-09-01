@@ -55,22 +55,22 @@ void Worm::print_field(){
 void Worm::logic(int input){
 
   if(input == 119 || input == 87){ // up
-    cout << 'u' << endl;
+    //cout << 'u' << endl;
   }
   if(input == 97 || input == 65){ // left
-    cout << 'l' << endl;
+    //cout << 'l' << endl;
   }
   if(input == 115 || input == 83){ // down
-    cout << 'd' << endl;
+    //cout << 'd' << endl;
     direction = 'd';
-    
+
   }
   if(input == 100 || input == 68){ // right
-    cout << 'r' << endl;
+    //cout << 'r' << endl;
   }
-  else{
-    if(direction == 'r'){
-      
+  else if(input == 0){
+    if(direction == 'd'){
+
     }
   }
 }//logic
@@ -79,15 +79,22 @@ void Worm::logic(int input){
 int main(){
   Worm wiggler; 
   while(!wiggler.is_dead()){
-    //system("clear"); // clears the screen
+    system("clear"); // clears the screen
     //input
-    int input = getch();
+    
+    int input = 0;
+    
+    if(_kbhit()){
+      input = getch();
+    }
+    
+
 
     //logic
     wiggler.logic(input);
 
     //draw field
-    
+
     //wiggler.print_field(); // prints out board
   }
 }
