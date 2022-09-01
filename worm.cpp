@@ -14,6 +14,7 @@ class Worm{
     bool dead = false; 
     int Xpos = 1;
     int Ypos = 1;
+
     vector<int> body;
     // not sure what im going to do with this vector yet
     char direction = 'r';
@@ -53,12 +54,18 @@ void Worm::print_field(){
 } // print_field()
 
 void Worm::logic(int input){
+  if(Xpos == 0 || Xpos == 64 || Ypos == 0 || Ypos == 24){
+    dead = true;
+    return;
+  }
 
   if(input == 119 || input == 87){ // up
     //cout << 'u' << endl;
+    direction = 'u';
   }
   if(input == 97 || input == 65){ // left
     //cout << 'l' << endl;
+    direction = 'l';
   }
   if(input == 115 || input == 83){ // down
     //cout << 'd' << endl;
@@ -67,12 +74,22 @@ void Worm::logic(int input){
   }
   if(input == 100 || input == 68){ // right
     //cout << 'r' << endl;
+    direction = 'r';
   }
-  else if(input == 0){
-    if(direction == 'd'){
 
-    }
+  if(direction == 'r'){
+    Xpos++;
   }
+  if(direction == 'd'){
+    Ypos++; 
+  }
+  if(direction == 'l'){
+    Xpos--;
+  }
+  if(direction == 'u'){
+    Ypos--;
+  }
+
 }//logic
 
 
@@ -81,21 +98,19 @@ int main(){
   while(!wiggler.is_dead()){
     system("clear"); // clears the screen
     //input
-    
+
     int input = 0;
-    
+
     if(_kbhit()){
       input = getch();
     }
-    
-
 
     //logic
     wiggler.logic(input);
 
     //draw field
 
-    //wiggler.print_field(); // prints out board
+    wiggler.print_field(); // prints out board
   }
 }
 
