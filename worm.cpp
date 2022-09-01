@@ -21,7 +21,7 @@ class Worm{
     bool is_dead();
     void print_field();
     void print_body(int x, int y);
-    void logic();
+    void logic(int input);
 
 }; // class worm
 
@@ -52,8 +52,20 @@ void Worm::print_field(){
   }
 } // print_field()
 
-void Worm::logic(){
-
+void Worm::logic(int input){
+  
+  if(input == 119 || input == 87){ // w
+    cout << "u" << endl;
+  }
+  if(input == 97 || input == 65){ // a
+    cout << "l" << endl;
+  }
+  if(input == 115 || input == 83){ // s
+    cout << "d" << endl;
+  }
+  if(input == 100 || input == 68){ // d
+    cout << "r" << endl;
+  }
 }//logic
 
 
@@ -63,24 +75,9 @@ int main(){
     //system("clear"); // clears the screen
     //input
     int input = getch();
-    if(input == 119 || input == 87){ // w
-      cout << "u" << endl;
-    }
-    if(input == 97 || input == 65){ // a
-      cout << "l" << endl;
-    }
-    if(input == 115 || input == 83){ // s
-      cout << "d" << endl;
-    }
-    if(input == 100 || input == 68){ // d
-      cout << "r" << endl;
-    }
-    
-
-
-
 
     //logic
+    logic(input);
 
 
     //draw field
