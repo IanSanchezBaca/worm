@@ -25,6 +25,10 @@ class Worm{
     void logic(int input);
 
 }; // class worm
+class Food{
+  int xpos, ypos;
+};
+
 
 bool Worm::is_dead(){
   return dead;
