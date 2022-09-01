@@ -16,7 +16,7 @@ class Worm{
     int Ypos = 1;
     vector<int> body;
     // not sure what im going to do with this vector yet
-    char direction = 'l';
+    char direction = 'r';
   public:
     bool is_dead();
     void print_field();
@@ -53,18 +53,25 @@ void Worm::print_field(){
 } // print_field()
 
 void Worm::logic(int input){
-  
-  if(input == 119 || input == 87){ // w
-    cout << "u" << endl;
+
+  if(input == 119 || input == 87){ // up
+    cout << 'u' << endl;
   }
-  if(input == 97 || input == 65){ // a
-    cout << "l" << endl;
+  if(input == 97 || input == 65){ // left
+    cout << 'l' << endl;
   }
-  if(input == 115 || input == 83){ // s
-    cout << "d" << endl;
+  if(input == 115 || input == 83){ // down
+    cout << 'd' << endl;
+    direction = 'd';
+    
   }
-  if(input == 100 || input == 68){ // d
-    cout << "r" << endl;
+  if(input == 100 || input == 68){ // right
+    cout << 'r' << endl;
+  }
+  else{
+    if(direction == 'r'){
+      
+    }
   }
 }//logic
 
@@ -77,10 +84,10 @@ int main(){
     int input = getch();
 
     //logic
-    logic(input);
-
+    wiggler.logic(input);
 
     //draw field
+    
     //wiggler.print_field(); // prints out board
   }
 }
