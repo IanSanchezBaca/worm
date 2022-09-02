@@ -9,6 +9,15 @@ using namespace std;
 // input
 // logic
 // draw
+class Food
+{
+public:
+  int xpos = 0;
+  int ypos = 0;
+  void randomize();
+  bool ate = true;
+}; // class food
+
 class Worm
 {
 private:
@@ -20,7 +29,6 @@ private:
 
   vector<int> body_x;
   vector<int> body_y;
-  // not sure what im going to do with this vector yet
   char direction = 'r';
 
 public:
@@ -30,14 +38,7 @@ public:
   void logic(int input);
 
 }; // class worm
-class Food
-{
-public:
-  int xpos = 0;
-  int ypos = 0;
-  void randomize();
-  bool ate = true;
-};
+
 
 void Food::randomize()
 {
@@ -56,7 +57,6 @@ void Food::randomize()
     ypos++;
     break;
   }
-
 } // randomize
 
 bool Worm::is_dead()
@@ -66,9 +66,16 @@ bool Worm::is_dead()
 
 void Worm::print_body(int x, int y)
 {
+  Food apple;
+  
   if (Xpos == x && Ypos == y)
   {
     cout << "Q";
+  }
+  
+  if (apple.xpos == x && apple.ypos == y)
+  {
+    cout << "F";
   }
   else
   {
@@ -107,7 +114,6 @@ void Worm::print_field()
           print_body(x, y);
           break;
         }
-
         break;
       }
     }
@@ -137,6 +143,11 @@ void Worm::logic(int input)
     return;
   }
   // end of checking the boarder
+
+  Food apple;
+  if(Xpos == apple.xpos && Ypos == apple.ypos){
+    
+  }
 
   switch (input)
   { // checking what was inputed
@@ -218,6 +229,4 @@ int main()
   cout << "| | __ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|\n";
   cout << "| |_\\ \\ (_| | | | | | |  __/ \\ \\_/ /\\ V /  __/ |   \n";
   cout << " \\____/\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|   \n";
-
-
 }
