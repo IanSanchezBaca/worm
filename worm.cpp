@@ -41,9 +41,22 @@ public:
 
 void Food::randomize()
 {
-
   xpos = rand() % 19;
+  switch (xpos)
+  {
+  case 0:
+    xpos++;
+    break;
+  }
+
   ypos = rand() % 19;
+  switch (ypos)
+  {
+  case 0:
+    ypos++;
+    break;
+  }
+
 } // randomize
 
 bool Worm::is_dead()
@@ -179,10 +192,7 @@ int main()
   while (!wiggler.is_dead())
   {
     // input
-    // system("clear"); // clears the screen
-
     int input = 0;
-
     if (_kbhit())
     {
       input = getch();
@@ -194,12 +204,20 @@ int main()
       apple.ate = false;
       apple.randomize();
     }
-    cout << apple.xpos << "' " << apple.ypos << endl;
+    // cout << "x position: " << apple.xpos << ", y position: " << apple.ypos << endl;
     system("clear");
     wiggler.logic(input);
 
     // draw field
-
     wiggler.print_field(); // prints out board
   }
+  system("clear");
+  cout << " _____                        _____                \n";
+  cout << "|  __ \\                      |  _  |               \n";
+  cout << "| |  \\/ __ _ _ __ ___   ___  | | | |_   _____ _ __ \n";
+  cout << "| | __ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|\n";
+  cout << "| |_\\ \\ (_| | | | | | |  __/ \\ \\_/ /\\ V /  __/ |   \n";
+  cout << " \\____/\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|   \n";
+
+
 }
