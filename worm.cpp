@@ -17,7 +17,8 @@ class Worm{
     int Xpos = 1;
     int Ypos = 1;
 
-    vector<int> body;
+    vector<int> body_x;
+    vector<int> body_y;
     // not sure what im going to do with this vector yet
     char direction = 'r';
   public:
@@ -53,7 +54,7 @@ void Worm::print_body(int x, int y){
 }// print_body
 
 void Worm::print_field(){
-  system("clear");
+  //system("clear");
   for(int y = 0; y < 20; y++){
     for(int x =0; x < 20; x++){ 
       switch (y) {
@@ -162,7 +163,7 @@ int main(){
   Food apple; 
   while(!wiggler.is_dead()){
     //input
-    system("clear"); // clears the screen
+    //system("clear"); // clears the screen
 
     int input = 0;
 
@@ -173,7 +174,7 @@ int main(){
       apple.ate = false; 
       apple.randomize();
     }
-
+    system("clear");
     wiggler.logic(input);
 
     //draw field
