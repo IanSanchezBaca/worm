@@ -21,7 +21,7 @@ public:
 class Worm
 {
 private:
-  int score = 0;
+  // int score = 0;
   int size;
   bool dead = false;
   int Xpos = 1;
@@ -33,9 +33,10 @@ private:
 
 public:
   bool is_dead();
-  void print_field();
-  void print_body(int x, int y);
-  void logic(int input);
+  void print_field(Food &apple);
+  void print_body(int x, int y, Food &apple);
+  void logic(int input, Food &apple);
+  int score = 0;
 
 }; // class worm
 
@@ -64,18 +65,15 @@ bool Worm::is_dead()
   return dead;
 } // is_dead
 
-void Worm::print_body(int x, int y)
+void Worm::print_body(int x, int y, Food &apple)
 {
-  Food apple;
   
   if (Xpos == x && Ypos == y)
   {
-    cout << "Q";
+    cout << 'Q';
   }
-  
-  if (apple.xpos == x && apple.ypos == y)
-  {
-    cout << "F";
+  else if(x == apple.xpos && y == apple.ypos){
+    cout << 'F';
   }
   else
   {
@@ -83,7 +81,7 @@ void Worm::print_body(int x, int y)
   }
 } // print_body
 
-void Worm::print_field()
+void Worm::print_field(Food &apple)
 {
   // system("clear");
   for (int y = 0; y < 20; y++)
@@ -111,7 +109,7 @@ void Worm::print_field()
           cout << 'o';
           break;
         default:
-          print_body(x, y);
+          print_body(x, y, apple);
           break;
         }
         break;
@@ -121,7 +119,7 @@ void Worm::print_field()
   }
 } // print_field
 
-void Worm::logic(int input)
+void Worm::logic(int input, Food &apple)
 {
   // checking if it touched the boarder
   switch (Xpos)
@@ -144,9 +142,10 @@ void Worm::logic(int input)
   }
   // end of checking the boarder
 
-  Food apple;
   if(Xpos == apple.xpos && Ypos == apple.ypos){
-    
+    // apple.ate == true;
+    apple.randomize();
+    score++;
   }
 
   switch (input)
@@ -200,6 +199,7 @@ int main()
 {
   Worm wiggler;
   Food apple;
+  apple.randomize();
   while (!wiggler.is_dead())
   {
     // input
@@ -210,17 +210,17 @@ int main()
     }
 
     // logic
-    if (apple.ate == true)
-    {
-      apple.ate = false;
-      apple.randomize();
-    }
+    // if (apple.ate == true)
+    // {
+      // apple.ate = false;
+      // apple.randomize();
+    // }
     // cout << "x position: " << apple.xpos << ", y position: " << apple.ypos << endl;
     system("clear");
-    wiggler.logic(input);
+    wiggler.logic(input, apple);
 
     // draw field
-    wiggler.print_field(); // prints out board
+    wiggler.print_field(apple); // prints out board
   }
   system("clear");
   cout << " _____                        _____                \n";
@@ -229,4 +229,5 @@ int main()
   cout << "| | __ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|\n";
   cout << "| |_\\ \\ (_| | | | | | |  __/ \\ \\_/ /\\ V /  __/ |   \n";
   cout << " \\____/\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|   \n";
+  cout << "Final score: " << wiggler.score << endl;
 }
