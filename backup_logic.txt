@@ -1,0 +1,71 @@
+switch (Xpos)
+  {
+  case 0:
+    dead = true;
+    return;
+  case 19:
+    dead = true;
+    return;
+  }
+  switch (Ypos)
+  {
+  case 0:
+    dead = true;
+    return;
+  case 19:
+    dead = true;
+    return;
+  }
+  // end of checking the boarder
+
+  if (Xpos == apple.xpos && Ypos == apple.ypos)
+  {
+    // apple.ate == true;
+    apple.randomize();
+    score++;
+  }
+
+  switch (input)
+  { // checking what was inputed
+  case 119:
+    direction = 'u';
+    break;
+  case 87:
+    direction = 'u';
+    break;
+  case 97:
+    direction = 'l';
+    break;
+  case 65:
+    direction = 'l';
+    break;
+  case 115:
+    direction = 'd';
+    break;
+  case 83:
+    direction = 'd';
+    break;
+  case 100:
+    direction = 'r';
+    break;
+  case 68:
+    direction = 'r';
+    break;
+  } // end of checking whatwas inputed
+
+  if (direction == 'r')
+  {
+    Xpos++;
+  }
+  if (direction == 'd')
+  {
+    Ypos++;
+  }
+  if (direction == 'l')
+  {
+    Xpos--;
+  }
+  if (direction == 'u')
+  {
+    Ypos--;
+  }

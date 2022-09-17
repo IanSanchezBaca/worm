@@ -15,31 +15,37 @@ public:
   int xpos = 0;
   int ypos = 0;
   void randomize();
-  bool ate = true;
+  // bool ate = true;
 }; // class food
 
 class Worm
 {
 private:
-  // int score = 0;
-  int size;
-  bool dead = false;
-  int Xpos = 1;
-  int Ypos = 1;
+  // int size;
+  bool dead;
+  int Xpos;
+  int Ypos;
 
-  vector<int> body_x;
-  vector<int> body_y;
-  char direction = 'r';
+  // vector<Worm> body;
+  // vector<int> body_x = {0};
+  // vector<int> body_y = [0];
+  char direction;
 
 public:
+  Worm()
+  {
+    Xpos = 1;
+    Ypos = 1;
+    direction = 'r';
+    dead = false;
+  }
   bool is_dead();
   void print_field(Food &apple);
   void print_body(int x, int y, Food &apple);
-  void logic(int input, Food &apple);
+  void logic(int input, Food &apple, vector<Worm> &w);
   int score = 0;
 
 }; // class worm
-
 
 void Food::randomize()
 {
@@ -67,12 +73,13 @@ bool Worm::is_dead()
 
 void Worm::print_body(int x, int y, Food &apple)
 {
-  
+
   if (Xpos == x && Ypos == y)
   {
     cout << 'Q';
   }
-  else if(x == apple.xpos && y == apple.ypos){
+  else if (x == apple.xpos && y == apple.ypos)
+  {
     cout << 'F';
   }
   else
@@ -119,90 +126,43 @@ void Worm::print_field(Food &apple)
   }
 } // print_field
 
-void Worm::logic(int input, Food &apple)
+void Worm::logic(int input, Food &apple, vector<Worm> &w)
 {
-  // checking if it touched the boarder
-  switch (Xpos)
-  {
-  case 0:
-    dead = true;
-    return;
-  case 19:
-    dead = true;
-    return;
+  // fist update the "head" and body
+  if(input == 'u'){
+    for(int i = 1; i < (int)w.size(); i++){
+      w[i] = w[i-1];
+    }
+    w[0].direction = 'u';
+    w[0].Ypos--;
   }
-  switch (Ypos)
-  {
-  case 0:
-    dead = true;
-    return;
-  case 19:
-    dead = true;
-    return;
+  if(input == 'd'){
+    w[0].direction = 'd';
+    w[0].Ypos++;
   }
-  // end of checking the boarder
-
-  if(Xpos == apple.xpos && Ypos == apple.ypos){
-    // apple.ate == true;
-    apple.randomize();
-    score++;
+  if(input == 'l'){
+    w[0].direction = 'l';
+    w[0].Xpos--;
   }
-
-  switch (input)
-  { // checking what was inputed
-  case 119:
-    direction = 'u';
-    break;
-  case 87:
-    direction = 'u';
-    break;
-  case 97:
-    direction = 'l';
-    break;
-  case 65:
-    direction = 'l';
-    break;
-  case 115:
-    direction = 'd';
-    break;
-  case 83:
-    direction = 'd';
-    break;
-  case 100:
-    direction = 'r';
-    break;
-  case 68:
-    direction = 'r';
-    break;
-  } // end of checking whatwas inputed
-
-  if (direction == 'r')
-  {
-    Xpos++;
+  if(input == 'r'){
+    w[0].direction = 'r';
+    w[0].Xpos++;
   }
-  if (direction == 'd')
-  {
-    Ypos++;
-  }
-  if (direction == 'l')
-  {
-    Xpos--;
-  }
-  if (direction == 'u')
-  {
-    Ypos--;
-  }
-
+  // check if 
+  
 } // logic
 
 int main()
 {
-  Worm wiggler;
+  Worm w;
+  vector<Worm> body;
+  body.push_back(w);
   Food apple;
   apple.randomize();
-  while (!wiggler.is_dead())
+  while (!body[0].is_dead())
   {
     // input
+
     int input = 0;
     if (_kbhit())
     {
@@ -210,17 +170,13 @@ int main()
     }
 
     // logic
-    // if (apple.ate == true)
-    // {
-      // apple.ate = false;
-      // apple.randomize();
-    // }
-    // cout << "x position: " << apple.xpos << ", y position: " << apple.ypos << endl;
+
     system("clear");
-    wiggler.logic(input, apple);
+    w.logic(input, apple, body);
 
     // draw field
-    wiggler.print_field(apple); // prints out board
+
+    w.print_field(apple); // prints out board
   }
   system("clear");
   cout << " _____                        _____                \n";
@@ -229,5 +185,5 @@ int main()
   cout << "| | __ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|\n";
   cout << "| |_\\ \\ (_| | | | | | |  __/ \\ \\_/ /\\ V /  __/ |   \n";
   cout << " \\____/\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|   \n";
-  cout << "Final score: " << wiggler.score << endl;
+  cout << "Final score: " << w.score << endl;
 }
