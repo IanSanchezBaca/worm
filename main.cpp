@@ -32,12 +32,12 @@ int main()
 
     // logic
 
-    system("clear");
+    // system("clear");
     w.logic(input, apple, body);
 
     // draw field
-
-    w.print_field(apple); // prints out board
+    // system("clear");
+    w.print_field(apple, body); // prints out board
   }
   system("clear");
   cout << " _____                        _____                \n";
