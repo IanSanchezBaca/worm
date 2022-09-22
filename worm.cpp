@@ -33,7 +33,7 @@ void Worm::print_field(Food &apple, vector<Worm> &w)
                     {
                         if (w[i].Xpos == x && w[i].Ypos == y)
                         {
-                            cout << i;
+                            cout << Q;
                             empty = false;
                         }
                     }
