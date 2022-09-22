@@ -34,7 +34,7 @@ void Worm::print_field(Food &apple, vector<Worm> &w)
     {
         for (int x = 0; x < 20; x++)
         {
-            if(y == 0 || y == 19 || x == 0 || x == 19)
+            if (y == 0 || y == 19 || x == 0 || x == 19)
             {
                 cout << '#';
             }
@@ -53,13 +53,13 @@ void Worm::print_field(Food &apple, vector<Worm> &w)
                             cout << 'Q';
                             empty = false;
                         }
-                        if (empty)
-                        {
-                            empty = true;
-                            cout << ' ';
-                        }
-                        empty = true;
                     }
+                    if (empty)
+                    {
+                        empty = true;
+                        cout << ' ';
+                    }
+                    empty = true;
                 }
             }
         }
@@ -79,7 +79,7 @@ void Worm::logic(int input, Food &apple, vector<Worm> &w)
         } // end for i}
     }
 
-    //update the head
+    // update the head
     if (w[0].direction == 'r')
     {
         w[0].Xpos++;
