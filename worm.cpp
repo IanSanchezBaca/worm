@@ -9,23 +9,6 @@ bool Worm::is_dead()
     return dead;
 } // is_dead
 
-// void Worm::print_body(int x, int y, Food &apple, Worm w)
-// {
-
-//     if (Xpos == x && Ypos == y)
-//     {
-//         cout << 'Q';
-//     }
-//     else if (x == apple.xpos && y == apple.ypos)
-//     {
-//         cout << 'F';
-//     }
-//     else
-//     {
-//         cout << " ";
-//     }
-// } // print_body
-
 void Worm::print_field(Food &apple, vector<Worm> &w)
 {
     system("clear");
@@ -56,7 +39,7 @@ void Worm::print_field(Food &apple, vector<Worm> &w)
                     }
                     if (empty)
                     {
-                        empty = true;
+                        // empty = true;
                         cout << ' ';
                     }
                     empty = true;
@@ -147,5 +130,5 @@ void Worm::logic(int input, Food &apple, vector<Worm> &w)
         score++;
     }
 
-    print_field(apple, w);
+    // print_field(apple, w);
 } // logic
