@@ -46,5 +46,15 @@ int main()
   cout << "| | __ / _` | '_ ` _ \\ / _ \\ | | | \\ \\ / / _ \\ '__|\n";
   cout << "| |_\\ \\ (_| | | | | | |  __/ \\ \\_/ /\\ V /  __/ |   \n";
   cout << " \\____/\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|   \n";
+  
+  if(body[0].crashed_into_wall)
+  {
+    cout << "You crashed into the wall.\n";
+  }
+  else if(body[0].crashed_into_body)
+  {
+    cout << "You crashed into body\n";
+  }
+  
   cout << "Final score: " << w.score << endl;
 }
